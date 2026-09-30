@@ -2,9 +2,13 @@ import random
 from words import WORDS
 from feedback import evaluate
 
+SUPPORTED_LENGTHS = (4, 5, 6)
+
 
 class WordleGame:
     def __init__(self, length=5):
+        if length not in SUPPORTED_LENGTHS:
+            raise ValueError(f"Choose a word length from: {SUPPORTED_LENGTHS}")
         self.length = length
         self.max_guesses = 6
         self.target = random.choice([w for w in WORDS if len(w) == length])
